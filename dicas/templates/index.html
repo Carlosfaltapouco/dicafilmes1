@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block content %}
+
+    <!-- navbar  -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top ">
+        <a class="navbar-brand" href="#">Dicas & filmes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end " id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="#">LOGIN</a>
+                <a class="nav-item nav-link" href="#">SERIES</a>
+                <a class="nav-item nav-link" href="#">FILMES</a>
+                <a class="nav-item nav-link" href="http://127.0.0.1:8000/admin/">ADMIN</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="container-fluid bg-light pt-5">
+        <div class="row justify-content-center">
+     
+    <!-- card(s) -->
+
+                {% if dicas %}
+                {% for dica in dicas %}
+                <article>
+                    <div class="container">
+                        <div class="card">
+                        <div class="card__header">
+                            {% if dica.foto_dica %} 
+                                <img src="{{dica.foto_dica.url}}" alt="card__image" class="card__image" width="600">
+                            {% else %}
+                                <img src="{% static 'img\pipoca e filme.jpg' %}" alt="card__image" class="card__image" width="600">
+                            {% endif %}
+                        </div>
+                        <div class="card__body">
+                            <span class="tag tag-blue">{{dica.pessoa}}</span>
+                                <h5 class="card-title">{{dica.nome_dica}}</h5>
+                                <p class="card-text">{{dica.comentarios}}</p>
+                                <p>{{dica.categoria}}, Onde assistir: {{dica.onde_assistir}}, nota: {{dica.nota_de_avaliacao}} </p>
+                        </div>
+                        <div class="conteiner_card_footer">
+                            <div class="card__footer">
+                                <div class="user">
+                                <img src="{% static 'img\imagem.certa.jpg' %}" alt="user__image" class="user__image">
+                                <div class="user__info">
+                                    
+                                    <small>{{dica.date_da_dica}}</small>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>    
+                </article>
+                {% endfor %}
+                {% else %}
+                {% endif %}
+
+        </div>
+    </section>
+
+
+
+    <p>contato:<a href="carlosfaltapouco@hotmail.com">carlosfaltapouco@hotmail.com</a></p>
+
+
+{% endblock %}
+

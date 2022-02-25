@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block content %}
+
+
+
+    <!-- navbar  -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'index' %}">Dicas & filmes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="{% url 'index' %}">inicio<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Series</a>
+                <a class="nav-item nav-link" href="#">filmes</a>
+                <a class="nav-item nav-link" href="#">contatos</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- titulos -->
+
+    <h3 class="text-center fonte-titulo pt-5">Compartilhe suas dicas de filmes e series!</h3>
+    <h4 class="text-center pb-5">Economize tempo e veja o que seus amigos então assistindo!</h4>
+
+
+    <section class="container-fluid bg-light">
+        <div class="row justify-content-center">
+            
+            <!-- card(s) -->
+
+            <article class="card card-largura p-0 m-4 col-12 col-md-3 ">
+                {% if dica.foto_dica %}                   
+                    <img src="{{dica.foto_dica.url}}" class="card-img-top card-posicao-imagem" alt="...">
+                {% else %}
+                    <img src="{% static 'src/img/homem aranha.jpg' %}" class="card-img-top card-posicao-imagem" alt="...">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{dica.nome_dica}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">CATEGORIA: {{ dica.categoria }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">ONDE ASSISTIR: {{dica.onde_assistir}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">NOTA: {{dica.nota_de_avaliacao}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{date_da_dica}}</h6>
+                    <p class="card-text"></p>
+                    <a href="{% url 'index' %}" class="btn btn-primary">VOLTA A LISTA</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+
+
+    <p>contato:<a href="mailto:email@frutafruto.com.br">email@frutafruto.com.br</a></p>
+
+    {% endblock %}
